@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<head>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+  <link href="https://fonts.googleapis.com/css?family=Poller+One" rel="stylesheet">
+<style>
+
+.robot {
+  position: relative;
+  left: 200px;
+}
+
+.beep {
+  width: 5px;
+  height: 0;
+  border: 5px solid transparent;
+  border-top: 10px solid #777;
+  border-bottom: 80px solid #888;
+  position: relative;
+  left: 140px;
+}
+
+@keyframes blink {
+  50% {
+    background: radial-gradient(circle, red 15%, transparent 40%), #cc5;
+  }
+}
+@-webkit-keyframes blink {
+  50% {
+    background: -webkit-radial-gradient(circle, red 15%, transparent 40%), #cc5;
+  }
+}
+@-moz-keyframes blink {
+  50% {
+    background: -moz-radial-gradient(circle, red 15%, transparent 40%), #cc5;
+  }
+}
+
+.brain {
+  background: radial-gradient(circle, white 25%, transparent 45%), #00FFFF;
+  background: -moz-radial-gradient(circle, white 25%, transparent 45%), #00FFFF;
+  background: -webkit-radial-gradient(circle, white 25%, transparent 45%), #00FFFF;
+  background-size: 65px 100px;
+  height: 125px;
+  width: 125px;
+  position:relative;
+  border-radius: 20px 20px 10px 10px;
+  border-top:10px solid #666;
+  border-left:10px solid #666;
+  border-right:10px solid #666;
+  border-bottom: 40px solid #666;
+  position: relative;
+  left: 70px;
+}
+
+.torso {
+  height: 300px;
+  width: 210px;
+  background:#00FFFF;
+  border:10px solid #666;
+  border-radius: 20px 20px;
+  left:30px;
+  position:relative;
+}
+.left {
+  font-family: 'Poller One', verdana, arial, sans-serif;
+  font-weight: bold;
+  font-size: 250px;
+  color: #FF6666;
+  transform: rotate(200deg);
+  -webkit-transform: rotate(200deg);
+  -moz-transform: rotate(200deg);
+  position: relative;
+  top: -30px;
+  left: -220px;
+  z-index: -1;
+}
+.right {
+  font-family: 'Poller One', verdana, arial, sans-serif;
+  font-weight: bold;
+  font-size: 250px;
+  color: #FF6666;
+  transform: scaleY(-1) rotate(20deg);
+  -webkit-transform: scaleY(-1) rotate(20deg);
+  -moz-transform: scaleY(-1) rotate(20deg);
+  position: relative;
+  top: -325px;
+  left: 225px;
+  z-index: -1;
+}
+.foot1{
+  height:40px;
+  width:50px;
+  background:#FF6666;
+  border-radius:30px 30px 0 0;
+  border:10px solid grey;
+  position:relative;
+  left:168px;
+  top:-120px;
+  z-index:-1;
+  }
+.foot2{
+   height:40px;
+   width:50px;
+   background:#FF6666;
+   border-radius:30px 30px 0 0;
+   border:10px solid grey;
+   position:relative;
+   left:50px;
+   top:-178px;
+   z-index:-1;
+}
+.leg1{
+  height:80px;
+  width:30px;
+  border-left:10px solid grey;
+  border-right:10px solid grey;
+  border-bottom:30px solid grey;
+  background: #FF6666;
+  position:relative;
+  left:175px;
+
+  }
+.leg2{
+  height:80px;
+  width:30px;
+  border-left:10px solid grey;
+  border-right:10px solid grey;
+  border-bottom:30px solid grey;
+  background:#FF6666;
+  left:60px;
+  top:-110px;
+  position:relative;
+}
+
+.laser {
+  animation: blink 4s infinite;
+  -webkit-animation: blink 4s infinite;
+  -moz-animation: blink 4s infinite;
+}
+button{
+  position: relative;
+  top:-173px;
+  padding:10px;
+  margin:10px;
+  color:black;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid black;
+  height: 45px;
+}
+.moves{
+  padding: 8px 22px 8px 22px;
+}
+.color{
+padding: 8px 20px 8px 20px;
+}
+.moverobot{
+	animation: move 5s infinite;
+  -webkit-animation:move 5s infinite;
+
+}
+.flash{
+  margin-left: 30px ;
+}
+@keyframes move{
+
+ 50%{
+  position: relative;
+  left:800px;
+}
+}
+@-webkit-keyframes move{
+ 50%{
+  position: relative;
+  left:800px;
+ }
+}
+@-moz-keyframes move{
+ 50%{
+  position: relative;
+  left:800px;
+ }
+  }
+
+
+</style>
+</head>
+
+<body>
+
+<div class="robot">
+  <div class="beep"></div>
+  <div class="brain"></div>
+  <div class="torso">
+    <div class="left">j</div>
+    <div class="right">j</div>
+</div>
+  <div class="leg1"></div>
+  <div class="leg2"></div>
+  <div class="foot1"></div>
+  <div class="foot2"></div>
+  <div class="rect"></div>
+
+</div>
+<button class="flash">Blink</button>
+<button class="color">change color</button>
+<button class="move">move robot</button>
+
+<script>
+$(".flash").click(function() {
+  $(".brain").toggleClass('laser');
+});
+$(".color").click(function() {
+
+  var red = Math.floor(Math.random() * 255);
+  var green = Math.floor(Math.random() * 255);
+  var blue = Math.floor(Math.random() * 255);
+  var randomRGBA='rgba('+red+','+green+','+blue+',1)';
+  $("body").css("background",randomRGBA);
+
+  });
+  $(".move").click(function() {
+   		$(".robot").toggleClass('moverobot');
+ 		});
+ $("button").hover(function(){
+     $(this).css("background-color", "blue");
+     }, function(){
+     $(this).css("background-color", "#cc5");
+ });
+
+</script>
+</body>
